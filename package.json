@@ -10,8 +10,8 @@
     "start": "remix-serve build",
     "typecheck": "tsc -b",
     "format": "prettier --write --ignore-path .gitignore './**/*.{js,jsx,ts,tsx,json,css}'",
-    "lint": "eslint --ext .jsx,.js,.tsx,.ts app/",
-    "lint-fix": "eslint --ext .jsx,.js,.tsx,.ts app/ --fix"
+    "lint": "eslint \"src/**/*.ts?(x)\" --ext .js,.jsx,.ts,.tsx",
+    "lint-fix": "eslint --fix \"src/**/*.ts?(x)\" --ext .js,.jsx,.ts,.tsx"
   },
   "dependencies": {
     "@remix-run/react": "^1.2.1",
@@ -22,6 +22,7 @@
   },
   "devDependencies": {
     "@remix-run/dev": "^1.2.1",
+    "@remix-run/eslint-config": "^1.2.1",
     "@types/react": "^17.0.39",
     "@types/react-dom": "^17.0.9",
     "@typescript-eslint/eslint-plugin": "^5.12.0",
