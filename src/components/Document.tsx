@@ -1,5 +1,12 @@
 import * as React from 'react'
+import type { LinksFunction } from 'remix'
 import { Meta, Links, ScrollRestoration, Scripts, LiveReload, useLocation } from 'remix'
+
+import styles from '~/styles/app.css'
+
+export const links: LinksFunction = () => {
+  return [{ rel: 'stylesheet', href: styles }]
+}
 
 const Document = ({ children, title }: { children: React.ReactNode; title?: string }) => {
   return (
