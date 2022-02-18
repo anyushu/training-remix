@@ -1,12 +1,6 @@
 import { Outlet, useCatch } from 'remix'
-import type { LinksFunction } from 'remix'
 import Document from '~/components/Document'
 import Layout from '~/components/Layout'
-import globalStylesUrl from '~/styles/global.css'
-
-export const links: LinksFunction = () => {
-  return [{ rel: 'stylesheet', href: globalStylesUrl }]
-}
 
 const App = () => {
   return (
