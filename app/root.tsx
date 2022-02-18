@@ -11,10 +11,9 @@ import {
   useLocation,
 } from 'remix'
 import type { LinksFunction } from 'remix'
-
-import deleteMeRemixStyles from '~/styles/demos/remix.css'
-import globalStylesUrl from '~/styles/global.css'
-import darkStylesUrl from '~/styles/dark.css'
+import darkStylesUrl from 'styles/dark.css'
+import deleteMeRemixStyles from 'styles/demos/remix.css'
+import globalStylesUrl from 'styles/global.css'
 
 /**
  * The `links` export is a function that returns an array of objects that map to
@@ -24,7 +23,7 @@ import darkStylesUrl from '~/styles/dark.css'
  *
  * https://remix.run/api/app#links
  */
-export let links: LinksFunction = () => {
+export const links: LinksFunction = () => {
   return [
     { rel: 'stylesheet', href: globalStylesUrl },
     {
@@ -72,7 +71,7 @@ function Document({ children, title }: { children: React.ReactNode; title?: stri
   )
 }
 
-function Layout({ children }: React.PropsWithChildren<{}>) {
+function Layout({ children }: { children?: React.ReactNode }) {
   return (
     <div className="remix-app">
       <header className="remix-app__header">
@@ -108,7 +107,7 @@ function Layout({ children }: React.PropsWithChildren<{}>) {
 }
 
 export function CatchBoundary() {
-  let caught = useCatch()
+  const caught = useCatch()
 
   let message
   switch (caught.status) {
@@ -136,7 +135,6 @@ export function CatchBoundary() {
 }
 
 export function ErrorBoundary({ error }: { error: Error }) {
-  console.error(error)
   return (
     <Document title="Error!">
       <Layout>
@@ -179,15 +177,15 @@ function RemixLogo(props: React.ComponentPropsWithoutRef<'svg'>) {
  * Provides an alert for screen reader users when the route changes.
  */
 const RouteChangeAnnouncement = React.memo(() => {
-  let [hydrated, setHydrated] = React.useState(false)
-  let [innerHtml, setInnerHtml] = React.useState('')
-  let location = useLocation()
+  const [hydrated, setHydrated] = React.useState(false)
+  const [innerHtml, setInnerHtml] = React.useState('')
+  const location = useLocation()
 
   React.useEffect(() => {
     setHydrated(true)
   }, [])
 
-  let firstRenderRef = React.useRef(true)
+  const firstRenderRef = React.useRef(true)
   React.useEffect(() => {
     // Skip the first render because we don't want an announcement on the
     // initial page load.
@@ -196,7 +194,7 @@ const RouteChangeAnnouncement = React.memo(() => {
       return
     }
 
-    let pageTitle = location.pathname === '/' ? 'Home page' : document.title
+    const pageTitle = location.pathname === '/' ? 'Home page' : document.title
     setInnerHtml(`Navigated to ${pageTitle}`)
   }, [location.pathname])
 
